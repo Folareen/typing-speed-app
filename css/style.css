@@ -1,0 +1,67 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.start-overlay {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #00204A;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.start-overlay h2 {
+  color: #EFFBFF;
+  font-family: sans-serif;
+  margin-bottom: 30px;
+  font-size: 3rem;
+  text-align: center;
+  padding: 10px;
+}
+
+.start-overlay .start {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  font-size: 1rem;
+  padding: 15px 30px;
+  border: none;
+  outline: 1px solid #EFFBFF;
+  border-radius: 15px;
+  color: #EFFBFF;
+  background-color: #005792;
+}
+
+.start-overlay .start:hover {
+  cursor: pointer;
+  background-color: #004879;
+}
+
+.start-overlay .start:active {
+  padding: 14px 28px;
+  -webkit-box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.6);
+}
+/*# sourceMappingURL=style.css.map */

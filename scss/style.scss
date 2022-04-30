@@ -1,0 +1,52 @@
+@import 'variables';
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.start-overlay{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $darkblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h2{
+        color: $white;
+        font-family: sans-serif;
+        margin-bottom: 30px;
+        font-size: 3rem;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .start{
+        width: max-content;
+        height: max-content;
+        font-size: 1rem;
+        padding: 15px 30px;
+        border: none;
+        outline: 1px solid $white;
+        border-radius: 15px;
+        color: $white;
+        background-color: $blue;
+
+        &:hover{
+            cursor: pointer;
+            background-color: darken($blue, 5%);
+        }
+        &:active{
+            padding: 14px 28px;
+            box-shadow: 0 0 3px 3px rgba(0, 0, 0, .6);
+        }
+    }
+}
