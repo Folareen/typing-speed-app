@@ -13,6 +13,8 @@ function startGame(){
     START_OVERLAY.style = "display:none";
 
     getQuote();
+
+    startTimer();
 }
 
 
@@ -21,4 +23,12 @@ async function getQuote(){
     const data = await res.json();
 
     QUOTE.innerText = data.content;
+}
+
+function startTimer(){
+    let timer = 0;
+    setInterval(() => {
+        timer += 1;
+        TIMER.innerText = timer;
+    }, 1000);
 }
