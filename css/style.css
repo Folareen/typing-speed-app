@@ -7,7 +7,9 @@
   right: 0;
   left: 0;
   background-color: #00204A;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -71,6 +73,7 @@ body {
 .timer {
   margin: 50px 0;
   color: #00204A;
+  font-size: 2rem;
 }
 
 .quote {
