@@ -1,5 +1,3 @@
-// add speed func too
-
 const START_BUTTON = document.querySelector('.start');
 const START_OVERLAY = document.querySelector('.start-overlay');
 
@@ -8,7 +6,8 @@ const TEXTAREA = document.querySelector('textarea');
 const TIMER = document.querySelector('.timer');
 
 START_BUTTON.addEventListener('click', startGame);
-// TEXTAREA.addEventListener('focus', startTimer) 
+
+TEXTAREA.value = "";
 
 async function startGame(){
     START_OVERLAY.style = "display:none";
@@ -16,6 +15,31 @@ async function startGame(){
     await getQuote();
 
     startTimer();
+    TEXTAREA.placeholder = "Start typing...";
+
+    let wordsArr = QUOTE.innerText.split('');
+    QUOTE.innerText = "";
+    wordsArr.forEach( letter => {
+        let letterSpan = document.createElement('span');
+        letterSpan.innerText = letter;
+        letterSpan.classList.add("letterspan")
+        QUOTE.appendChild(letterSpan);
+    });
+    let spanArr = document.querySelectorAll('.letterspan');
+    
+    TEXTAREA.addEventListener('input', checkLetter);
+    function checkLetter(){
+        let textareaArr = TEXTAREA.value.split('');
+        let index = textareaArr.lastIndexOf(TEXTAREA.value[TEXTAREA.value.length -1]);
+
+        if(textareaArr[index] == spanArr[index].textContent ){
+            spanArr[index].classList.remove('incorrect');
+            spanArr[index].classList.add('correct');
+        }else{
+            spanArr[index].classList.remove('correct');
+            spanArr[index].classList.add('incorrect');
+        }
+    }
 
 }
 
@@ -30,16 +54,15 @@ async function getQuote(){
         return new Promise((resolve, reject) =>{
             setTimeout(() => {
                 resolve(QUOTE.innerText = data.content);
-            }, 2000);
+            }, 3000);
         })
     }
 }
 
 function startTimer(){
-    let timer = 0;
+    let timer = -1;
     setInterval(() => {
         timer += 1;
         TIMER.innerText = timer;
     }, 1000);
 }
-

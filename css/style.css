@@ -73,19 +73,35 @@ body {
 .timer {
   margin: 50px 0;
   color: #00204A;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .quote {
-  margin: 10px 0;
-  background-color: #005792;
-  color: #EFFBFF;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 600px;
+  background-color: #bceeff;
+  color: #005792;
   padding: 10px 20px;
   font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 .quote .loading {
-  color: #56d5ff;
+  color: #00b3ef;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.quote .correct {
+  color: #068606;
+  font-weight: bolder;
+}
+
+.quote .incorrect {
+  color: #8b0606;
+  font-weight: bolder;
 }
 
 textarea {
@@ -97,6 +113,22 @@ textarea {
   border: none;
   outline: 2px solid #00204A;
   background-color: #0075c5;
+  color: #bceeff;
+}
+
+textarea::-webkit-input-placeholder {
+  color: #bceeff;
+}
+
+textarea:-ms-input-placeholder {
+  color: #bceeff;
+}
+
+textarea::-ms-input-placeholder {
+  color: #bceeff;
+}
+
+textarea::placeholder {
   color: #bceeff;
 }
 /*# sourceMappingURL=style.css.map */

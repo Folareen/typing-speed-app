@@ -16,18 +16,35 @@ body{
 .timer{
     margin: 50px 0;
     color: $darkblue;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .quote{
-    margin: 10px 0;
-    background-color: $blue;
-    color: $white;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 600px;
+    // background-color: lighten($darkblue, 50%);
+    background-color: darken($white, 10%);
+    color: $blue;
     padding: 10px 20px;
     font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 3px;
 
     .loading{
-        color: darken($white, 30%);
+        color: darken($white, 50%);
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    .correct{
+        color: $green;
+        font-weight: bolder;
+    }
+
+    .incorrect{
+        color: $red;
+        font-weight: bolder;
     }
 }
 
@@ -41,4 +58,8 @@ textarea{
     outline: 2px solid $darkblue;
     background-color: lighten($blue, 10%);
     color: darken($white, 10%);
+
+    &::placeholder{
+        color: darken($white, 10%);
+    }
 }
