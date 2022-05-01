@@ -84,6 +84,10 @@ body {
   font-size: 1.2rem;
 }
 
+.quote .loading {
+  color: #56d5ff;
+}
+
 textarea {
   width: 80%;
   max-width: 600px;

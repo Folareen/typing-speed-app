@@ -8,13 +8,15 @@ const TEXTAREA = document.querySelector('textarea');
 const TIMER = document.querySelector('.timer');
 
 START_BUTTON.addEventListener('click', startGame);
+// TEXTAREA.addEventListener('focus', startTimer) 
 
-function startGame(){
+async function startGame(){
     START_OVERLAY.style = "display:none";
 
-    getQuote();
+    await getQuote();
 
     startTimer();
+
 }
 
 
@@ -22,7 +24,15 @@ async function getQuote(){
     const res = await fetch('https://api.quotable.io/random');
     const data = await res.json();
 
-    QUOTE.innerText = data.content;
+    await inner()
+
+    function inner(){
+        return new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve(QUOTE.innerText = data.content);
+            }, 2000);
+        })
+    }
 }
 
 function startTimer(){
@@ -32,3 +42,4 @@ function startTimer(){
         TIMER.innerText = timer;
     }, 1000);
 }
+

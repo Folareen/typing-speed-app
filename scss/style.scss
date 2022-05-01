@@ -25,6 +25,10 @@ body{
     color: $white;
     padding: 10px 20px;
     font-size: 1.2rem;
+
+    .loading{
+        color: darken($white, 30%);
+    }
 }
 
 textarea{
