@@ -9,6 +9,7 @@ START_BUTTON.addEventListener('click', startGame);
 
 TEXTAREA.value = "";
 let timer;
+let timerInterval;
 
 async function startGame(){
     START_OVERLAY.style = "display:none";
@@ -44,10 +45,8 @@ async function startGame(){
             }
         }
         else{
-            // displayScore();
+            displayScore();
         }
-
-
     }
 
 }
@@ -70,8 +69,31 @@ async function getQuote(){
 
 function startTimer(){
     timer = -1;
-    setInterval(() => {
+    timerInterval = setInterval(() => {
         timer += 1;
         TIMER.innerText = timer;
     }, 1000);
+}
+
+function displayScore(){
+    clearInterval(timerInterval)
+    const scoreOverlay = document.createElement('div');
+    scoreOverlay.classList.add("score-overlay");
+    document.body.appendChild(scoreOverlay);
+    
+    const score = document.createElement('p');
+    score.classList.add("score");
+
+    let quoteArr = "";
+    document.querySelectorAll('.letterspan').forEach( (letter) => {quoteArr += letter.textContent});
+
+    let wordLength = 0;
+    quoteArr.split(" ").forEach((word) => {wordLength += word.length});
+    let numberOfWords = quoteArr.split(" ").length;
+    const averageWordLength = wordLength / numberOfWords
+
+    const scoreValue = Math.floor((document.querySelectorAll('.correct').length / (timer/60) ) / averageWordLength) ;
+    score.innerHTML= `Your typing speed is <br> ${scoreValue} WPM`;
+
+    scoreOverlay.appendChild(score);
 }
