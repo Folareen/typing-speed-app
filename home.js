@@ -35,9 +35,11 @@ async function startGame(){
         let textareaArr = TEXTAREA.value.split('');
         let index = textareaArr.lastIndexOf(TEXTAREA.value[TEXTAREA.value.length -1]);
 
-        spanArr[index + 1].classList.add('current');
-        spanArr[0].classList.remove('current');
         if (textareaArr.length < spanArr.length){
+            
+            spanArr[index + 1].classList.add('current');
+            spanArr[0].classList.remove('current');
+
             if(textareaArr[index] == spanArr[index].textContent ){
                 spanArr[index].classList.remove('incorrect');
                 spanArr[index].classList.add('correct');
@@ -96,8 +98,13 @@ function displayScore(){
     let numberOfWords = quoteArr.split(" ").length;
     const averageWordLength = wordLength / numberOfWords
 
+    const numberOfCorrectWords = Math.floor(document.querySelectorAll('.correct').length / averageWordLength);
+    const numberOfIncorrectWords = Math.floor(document.querySelectorAll('.incorrect').length / averageWordLength);
+
     const scoreValue = Math.floor((document.querySelectorAll('.correct').length / (timer/60) ) / averageWordLength) ;
-    score.innerHTML= `Your typing speed is <br> ${scoreValue} WPM`;
+    score.innerHTML= `<span> Number of correct words : ${numberOfCorrectWords} <span> <br>
+        <span> Number of Incorrect words : ${numberOfIncorrectWords} <span> <br>
+        Your typing speed is <br> ${scoreValue} WPM`;
 
     scoreOverlay.appendChild(score);
 }
