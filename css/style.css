@@ -97,6 +97,35 @@
   font-size: 1.5rem;
   display: block;
   margin: 20px 0;
+  font-style: italic;
+}
+
+.score-overlay p span span {
+  color: #EFFBFF;
+  font-size: 1.6rem;
+  font-weight: bolder;
+  font-style: normal;
+}
+
+.score-overlay .close {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  font-size: 22px;
+  font-weight: bolder;
+  padding: 10px;
+  color: #EFFBFF;
+  border: none;
+  background-color: #8b0606;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.score-overlay .close:hover {
+  color: #8b0606;
+  background-color: #EFFBFF;
+  border: 2px solid #8b0606;
+  cursor: pointer;
 }
 
 * {

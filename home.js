@@ -12,6 +12,8 @@ let timer;
 let timerInterval;
 
 async function startGame(){
+    TEXTAREA.value = "";
+    QUOTE.innerHTML = "<span class='loading'>Loading quote in 2 secs..</span>"
     START_OVERLAY.style = "display:none";
 
     await getQuote();
@@ -22,41 +24,39 @@ async function startGame(){
     let wordsArr = QUOTE.innerText.split('');
     QUOTE.innerText = "";
     wordsArr.forEach( letter => {
-        let letterSpan = document.createElement('span');
+        const letterSpan = document.createElement('span');
         letterSpan.innerText = letter;
         letterSpan.classList.add("letterspan")
         QUOTE.appendChild(letterSpan);
     });
-    let spanArr = document.querySelectorAll('.letterspan');
     
-    spanArr[0].classList.add('current');
+    document.querySelectorAll('.letterspan')[0].classList.add('current');
     TEXTAREA.addEventListener('input', checkLetter);
     function checkLetter(){
-        let textareaArr = TEXTAREA.value.split('');
-        let index = textareaArr.lastIndexOf(TEXTAREA.value[TEXTAREA.value.length -1]);
+        const textareaArr = TEXTAREA.value.split('');
+        const index = textareaArr.lastIndexOf(TEXTAREA.value[TEXTAREA.value.length -1]);
 
-        if (textareaArr.length < spanArr.length){
-            
-            spanArr[index + 1].classList.add('current');
-            spanArr[0].classList.remove('current');
+        if (textareaArr.length < document.querySelectorAll('.letterspan').length){
 
-            if(textareaArr[index] == spanArr[index].textContent ){
-                spanArr[index].classList.remove('incorrect');
-                spanArr[index].classList.add('correct');
+            document.querySelectorAll('.letterspan')[index + 1].classList.add('current');
+            document.querySelectorAll('.letterspan')[0].classList.remove('current');
+
+            if(textareaArr[index] == document.querySelectorAll('.letterspan')[index].textContent ){
+                document.querySelectorAll('.letterspan')[index].classList.remove('incorrect');
+                document.querySelectorAll('.letterspan')[index].classList.add('correct');
             }
             else{
-                spanArr[index].classList.remove('correct');
-                spanArr[index].classList.add('incorrect');
+                document.querySelectorAll('.letterspan')[index].classList.remove('correct');
+                document.querySelectorAll('.letterspan')[index].classList.add('incorrect');
             }
         }
         else{
             displayScore();
         };
-        spanArr[index].classList.remove('current');
+        document.querySelectorAll('.letterspan')[index].classList.remove('current');
     }
 
 }
-
 
 async function getQuote(){
     const res = await fetch('https://api.quotable.io/random');
@@ -68,7 +68,7 @@ async function getQuote(){
         return new Promise((resolve, reject) =>{
             setTimeout(() => {
                 resolve(QUOTE.innerText = data.content);
-            }, 3000);
+            }, 2000);
         })
     }
 }
@@ -83,9 +83,10 @@ function startTimer(){
 
 function displayScore(){
     clearInterval(timerInterval)
-    const scoreOverlay = document.createElement('div');
+    document.querySelector('textarea').readOnly = true;
+
+    let scoreOverlay = document.createElement('div');
     scoreOverlay.classList.add("score-overlay");
-    document.body.appendChild(scoreOverlay);
     
     const score = document.createElement('p');
     score.classList.add("score");
@@ -102,9 +103,23 @@ function displayScore(){
     const numberOfIncorrectWords = Math.floor(document.querySelectorAll('.incorrect').length / averageWordLength);
 
     const scoreValue = Math.floor((document.querySelectorAll('.correct').length / (timer/60) ) / averageWordLength) ;
-    score.innerHTML= `<span> Number of correct words : ${numberOfCorrectWords} <span> <br>
-        <span> Number of Incorrect words : ${numberOfIncorrectWords} <span> <br>
-        Your typing speed is <br> ${scoreValue} WPM`;
+    score.innerHTML= `<span> Number of correct words : <br> <span>${numberOfCorrectWords}</span> </span>
+        <span> Number of Incorrect words : <br> <span>${numberOfIncorrectWords}</span> </span>
+        <span> Your typing speed is <br> <span>${scoreValue} WPM </span> </span>`;
+    
+    const close = document.createElement('button');
+    close.innerText = "X";
+    close.classList.add("close");
 
-    scoreOverlay.appendChild(score);
+    scoreOverlay.append(score, close);
+    document.body.appendChild(scoreOverlay);
+
+    close.addEventListener('click', closeScore);
+    function closeScore(){
+        document.querySelectorAll('.score-overlay').forEach((scoreOverlay) => scoreOverlay.remove());
+        startGame();
+        document.querySelector('textarea').readOnly = false;
+        document.querySelector('textarea').placeholder = "Wait..";
+        TIMER.innerText = 0;
+    }
 }
