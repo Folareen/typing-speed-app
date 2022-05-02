@@ -20,16 +20,15 @@ body{
 }
 
 .quote{
-    margin: 10px auto;
+    margin: 40px auto;
     width: 80%;
     max-width: 600px;
-    // background-color: lighten($darkblue, 50%);
     background-color: darken($white, 10%);
     color: $blue;
-    padding: 10px 20px;
+    padding: 15px 20px;
     font-size: 1.2rem;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 
     .loading{
         color: darken($white, 50%);

@@ -8,6 +8,7 @@ const TIMER = document.querySelector('.timer');
 START_BUTTON.addEventListener('click', startGame);
 
 TEXTAREA.value = "";
+let timer;
 
 async function startGame(){
     START_OVERLAY.style = "display:none";
@@ -32,13 +33,21 @@ async function startGame(){
         let textareaArr = TEXTAREA.value.split('');
         let index = textareaArr.lastIndexOf(TEXTAREA.value[TEXTAREA.value.length -1]);
 
-        if(textareaArr[index] == spanArr[index].textContent ){
-            spanArr[index].classList.remove('incorrect');
-            spanArr[index].classList.add('correct');
-        }else{
-            spanArr[index].classList.remove('correct');
-            spanArr[index].classList.add('incorrect');
+        if (textareaArr.length < spanArr.length){
+            if(textareaArr[index] == spanArr[index].textContent ){
+                spanArr[index].classList.remove('incorrect');
+                spanArr[index].classList.add('correct');
+            }
+            else{
+                spanArr[index].classList.remove('correct');
+                spanArr[index].classList.add('incorrect');
+            }
         }
+        else{
+            // displayScore();
+        }
+
+
     }
 
 }
@@ -60,7 +69,7 @@ async function getQuote(){
 }
 
 function startTimer(){
-    let timer = -1;
+    timer = -1;
     setInterval(() => {
         timer += 1;
         TIMER.innerText = timer;
