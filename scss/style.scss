@@ -36,6 +36,11 @@ body{
         font-style: italic;
     }
 
+    .current{
+        border-bottom: 2px solid $blue;
+        font-weight: bolder;
+    }
+
     .correct{
         color: $green;
         font-weight: bolder;

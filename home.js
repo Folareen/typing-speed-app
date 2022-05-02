@@ -29,11 +29,14 @@ async function startGame(){
     });
     let spanArr = document.querySelectorAll('.letterspan');
     
+    spanArr[0].classList.add('current');
     TEXTAREA.addEventListener('input', checkLetter);
     function checkLetter(){
         let textareaArr = TEXTAREA.value.split('');
         let index = textareaArr.lastIndexOf(TEXTAREA.value[TEXTAREA.value.length -1]);
 
+        spanArr[index + 1].classList.add('current');
+        spanArr[0].classList.remove('current');
         if (textareaArr.length < spanArr.length){
             if(textareaArr[index] == spanArr[index].textContent ){
                 spanArr[index].classList.remove('incorrect');
@@ -46,7 +49,8 @@ async function startGame(){
         }
         else{
             displayScore();
-        }
+        };
+        spanArr[index].classList.remove('current');
     }
 
 }

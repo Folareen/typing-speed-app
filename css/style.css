@@ -94,6 +94,11 @@ body {
   font-style: italic;
 }
 
+.quote .current {
+  border-bottom: 2px solid #005792;
+  font-weight: bolder;
+}
+
 .quote .correct {
   color: #068606;
   font-weight: bolder;
